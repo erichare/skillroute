@@ -20,7 +20,7 @@
     "@eslint/js": "^10.0.1",
     "@types/react": "^19.2.8",
     "@types/react-dom": "^19.2.5",
-    "@vitejs/plugin-react": "^6.0.5",
+    "@vitejs/plugin-react": "^6.1.0",
     "eslint": "^10.9.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "globals": "^17.9.0",
