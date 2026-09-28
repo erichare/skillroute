@@ -7,6 +7,53 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Claude Code plugin** in [`claude-plugin/`](claude-plugin/): the MCP server,
+  pinned to the release it ships with, and a `skillroute` skill that tells
+  Claude when to route, how to read the ranking, and how to build the catalog
+  when it's empty. Its README says what the plugin runs, reads, and sends, for
+  the Claude plugin directory. The release workflow's tag guard and
+  `tests/test_claude_plugin.py` keep its version and server pin in step with
+  each release.
+
+## [0.5.0] - 2026-09-27
+
+### Added
+
+- **Supply-chain pinning with toolprint.** SkillRoute ships an MCP server and a
+  library of skill bundles, so it is part of the supply chain it helps others
+  navigate. `toolprint.lock` pins the three MCP tools and the four example skill
+  bundles by content hash, so a body-only edit to a SKILL.md (one that leaves
+  its name and description alone) shows up as a lockfile diff in review.
+  `toolprint.mcp.json` points at the built server by relative path, which keeps
+  the lockfile portable, and a new `trust` CI job verifies both on every pull
+  request. [docs/security.md](docs/security.md) covers the threat model and why
+  spec compliance is not a security check.
+
+### Changed
+
+- The README is reorganized around a banner, install cards, live PyPI and npm
+  version badges, and a "What you get" component matrix. The CLI table gains the
+  missing `skillroute stats` row.
+
+### Fixed
+
+- The release workflow can be re-run against an existing tag through
+  `workflow_dispatch`, and each publish step skips a version that is already
+  live. This recovers a half-finished release, such as 0.4.0's, where the
+  `@skillroute/dsh-plugin` publish failed after everything else had succeeded.
+  PyPI publishing runs on tag pushes only, because the `pypi` environment
+  rejects dispatched runs.
+- The Skill Atlas screenshot no longer shows a local home-directory path or
+  the pre-rename repository name.
+
+### Security
+
+- The MCP server's lockfile updates three transitive dependencies for new
+  advisories: fast-uri 3.1.8 (one high), hono 4.13.9, and qs 6.16.0 (both
+  moderate).
+
 ## [0.4.0] - 2026-08-21
 
 ### Added
@@ -85,7 +132,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `skillroute stats` on a catalog that was never indexed reports zero routes
   instead of failing with a missing-table SQL error.
 
-[Unreleased]: https://github.com/erichare/skillroute/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/erichare/skillroute/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/erichare/skillroute/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/erichare/skillroute/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/erichare/skillroute/compare/v0.2.0...v0.3.0
 

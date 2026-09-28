@@ -37,7 +37,7 @@ jobs:
           ref: ${{ env.RELEASE_TAG }}
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v10.0.1
+        uses: astral-sh/setup-uv@v10.2.0
 
       - name: Set up Python
         uses: actions/setup-python@v7
@@ -60,9 +60,14 @@ jobs:
           py=$(python -c "import tomllib,pathlib; print(tomllib.loads(pathlib.Path('pyproject.toml').read_text())['project']['version'])")
           mcp_version=$(node -p "require('./mcp/package.json').version")
           plugin_version=$(node -p "require('./dsh-plugin/package.json').version")
-          echo "tag=$tag pyproject=$py mcp=$mcp_version dsh-plugin=$plugin_version"
-          if [ "$tag" != "$py" ] || [ "$tag" != "$mcp_version" ] || [ "$tag" != "$plugin_version" ]; then
-            echo "::error::Tag $RELEASE_TAG disagrees with pyproject.toml ($py), mcp/package.json ($mcp_version), and/or dsh-plugin/package.json ($plugin_version)."
+          # The Claude plugin isn't published from here; the plugin directory
+          # follows `main`. It's checked anyway because it pins the MCP server
+          # released under this tag, and tests/test_claude_plugin.py holds that
+          # pin to mcp/package.json.
+          claude_version=$(node -p "require('./claude-plugin/.claude-plugin/plugin.json').version")
+          echo "tag=$tag pyproject=$py mcp=$mcp_version dsh-plugin=$plugin_version claude-plugin=$claude_version"
+          if [ "$tag" != "$py" ] || [ "$tag" != "$mcp_version" ] || [ "$tag" != "$plugin_version" ] || [ "$tag" != "$claude_version" ]; then
+            echo "::error::Tag $RELEASE_TAG disagrees with pyproject.toml ($py), mcp/package.json ($mcp_version), dsh-plugin/package.json ($plugin_version), and/or claude-plugin/.claude-plugin/plugin.json ($claude_version)."
             exit 1
           fi
 
