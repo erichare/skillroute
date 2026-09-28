@@ -37,6 +37,10 @@ CI mirrors these commands plus dependency audits and a packaging check; see
 1. Bump the version in `pyproject.toml`, `mcp/package.json` (and
    `web/package.json` for consistency). Python code and the MCP server read
    their versions from package metadata — do not hardcode versions elsewhere.
+   Also bump `dsh-plugin/package.json`, and in
+   `claude-plugin/.claude-plugin/plugin.json` both `version` and the
+   `@skillroute/mcp-server@X.Y.Z` pin. The release workflow and
+   `tests/test_claude_plugin.py` fail if any of them disagree.
 2. Add a section to `CHANGELOG.md` and update its compare/tag links.
 3. Land those changes on `main`, then tag and push:
 
