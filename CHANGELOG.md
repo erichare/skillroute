@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Claude Code plugin** in [`claude-plugin/`](claude-plugin/): the MCP server,
+  pinned to the release it ships with, and a `skillroute` skill that tells
+  Claude when to route, how to read the ranking, and how to build the catalog
+  when it's empty. Its README says what the plugin runs, reads, and sends, for
+  the Claude plugin directory. The release workflow's tag guard and
+  `tests/test_claude_plugin.py` keep its version and server pin in step with
+  each release.
+
 ## [0.5.0] - 2026-09-27
 
 ### Added

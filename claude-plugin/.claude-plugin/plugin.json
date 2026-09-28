@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "skillroute",
+  "displayName": "SkillRoute",
+  "version": "0.5.0",
+  "description": "Local-first skill routing for Claude Code: index your SKILL.md bundles once, then ask SkillRoute which skills fit a request. It ranks candidates with reasons, confidence, and evidence, and asks clarifying questions when a request is ambiguous.",
+  "author": {
+    "name": "Eric Hare",
+    "email": "ericrhare@gmail.com",
+    "url": "https://github.com/erichare"
+  },
+  "homepage": "https://github.com/erichare/skillroute",
+  "repository": "https://github.com/erichare/skillroute",
+  "documentationUrl": "https://github.com/erichare/skillroute/tree/main/claude-plugin#readme",
+  "supportUrl": "https://github.com/erichare/skillroute/issues",
+  "privacyPolicyUrl": "https://github.com/erichare/skillroute/tree/main/claude-plugin#privacy",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "agent-skills",
+    "skill-routing",
+    "skill-catalog",
+    "mcp",
+    "retrieval"
+  ],
+  "mcpServers": {
+    "skillroute": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@skillroute/mcp-server@0.5.0"
+      ]
+    }
+  }
+}
