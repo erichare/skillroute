@@ -76,6 +76,7 @@ export function LeftPanel({
     <aside className="left-panel" ref={panelRef}>
       <div className="panel-section title-section">
         <h1>SkillRoute</h1>
+        <a className="brand-credit" href="https://jestats.io" target="_blank" rel="noreferrer">by JEStats</a>
       </div>
       <div className="panel-section">
         <div className="section-label">Atlas Controls</div>

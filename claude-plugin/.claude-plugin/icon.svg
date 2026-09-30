@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 160 160" role="img" aria-label="SkillRoute">
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 160 160" role="img" aria-label="SkillRoute by JEStats">
   <!-- The compass mark from docs/assets/banner.svg, on its own for the plugin icon. -->
   <defs>
     <linearGradient id="needle" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#38BDF8"/>
-      <stop offset="1" stop-color="#A78BFA"/>
+      <stop offset="0" stop-color="#D9531E"/>
+      <stop offset="1" stop-color="#F4C470"/>
     </linearGradient>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#050B18"/>
@@ -26,6 +26,6 @@
       <path d="M64 18 L77 64 L64 110 L51 64 Z" fill="url(#needle)"/>
       <path d="M64 18 L64 110 L51 64 Z" fill="#0F172A" opacity="0.35"/>
     </g>
-    <circle cx="64" cy="64" r="6" fill="#050B18" stroke="#C4B5FD" stroke-width="3"/>
+    <circle cx="64" cy="64" r="6" fill="#050B18" stroke="#F4C470" stroke-width="3"/>
   </g>
 </svg>

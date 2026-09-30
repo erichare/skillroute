@@ -65,9 +65,10 @@ jobs:
           # released under this tag, and tests/test_claude_plugin.py holds that
           # pin to mcp/package.json.
           claude_version=$(node -p "require('./claude-plugin/.claude-plugin/plugin.json').version")
-          echo "tag=$tag pyproject=$py mcp=$mcp_version dsh-plugin=$plugin_version claude-plugin=$claude_version"
-          if [ "$tag" != "$py" ] || [ "$tag" != "$mcp_version" ] || [ "$tag" != "$plugin_version" ] || [ "$tag" != "$claude_version" ]; then
-            echo "::error::Tag $RELEASE_TAG disagrees with pyproject.toml ($py), mcp/package.json ($mcp_version), dsh-plugin/package.json ($plugin_version), and/or claude-plugin/.claude-plugin/plugin.json ($claude_version)."
+          codex_version=$(node -p "require('./claude-plugin/.codex-plugin/plugin.json').version")
+          echo "tag=$tag pyproject=$py mcp=$mcp_version dsh-plugin=$plugin_version claude-plugin=$claude_version codex-plugin=$codex_version"
+          if [ "$tag" != "$py" ] || [ "$tag" != "$mcp_version" ] || [ "$tag" != "$plugin_version" ] || [ "$tag" != "$claude_version" ] || [ "$tag" != "$codex_version" ]; then
+            echo "::error::Tag $RELEASE_TAG disagrees with pyproject.toml ($py), mcp/package.json ($mcp_version), dsh-plugin/package.json ($plugin_version), claude-plugin/.claude-plugin/plugin.json ($claude_version), and/or claude-plugin/.codex-plugin/plugin.json ($codex_version)."
             exit 1
           fi
 
@@ -89,6 +90,9 @@ jobs:
       - name: Pack dsh plugin tarball
         working-directory: dsh-plugin
         run: npm pack --pack-destination ../dist
+
+      - name: Pack shared Claude Code and Codex plugin
+        run: zip -r "dist/skillroute-agent-plugin-${RELEASE_TAG#v}.zip" claude-plugin
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v7
@@ -149,7 +153,7 @@ jobs:
           path: dist
 
       - name: Remove non-PyPI artifacts
-        run: rm -f dist/*.tgz
+        run: rm -f dist/*.tgz dist/*.zip
 
       - name: Publish via trusted publishing
         uses: pypa/gh-action-pypi-publish@release/v1

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO_URL="${SKILLROUTE_REPO_URL:-https://github.com/erichare/skillroute.git}"
+REPO_URL="${SKILLROUTE_REPO_URL:-https://github.com/jestatsio/skillroute.git}"
 REF="${SKILLROUTE_REF:-main}"
 INSTALL_DIR="${SKILLROUTE_INSTALL_DIR:-}"
 ASSUME_YES="${SKILLROUTE_ASSUME_YES:-0}"
@@ -31,7 +31,7 @@ SkillRoute installer
 
 Usage:
   scripts/install.sh [options]
-  curl -fsSL https://raw.githubusercontent.com/erichare/skillroute/main/scripts/install.sh | bash
+  curl -fsSL https://raw.githubusercontent.com/jestatsio/skillroute/main/scripts/install.sh | bash
 
 Options:
   --yes                 Accept prompts, including detected client setup.
@@ -273,7 +273,7 @@ main() {
   local using_current=0
 
   banner
-  say "This installer sets up SkillRoute locally, then detects agent clients for MCP setup."
+  say "SkillRoute by JEStats (https://jestats.io). Sets up SkillRoute and detects agent clients for MCP setup."
   say "Repository: $REPO_URL"
   say "Ref:        $REF"
   say "Clients:    $CLIENTS"

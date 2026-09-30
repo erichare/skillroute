@@ -1,21 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="300" viewBox="0 0 1280 300" role="img" aria-label="SkillRoute — local-first skill routing for agent builders">
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="300" viewBox="0 0 1280 300" role="img" aria-label="SkillRoute by JEStats — local-first skill routing for agent builders">
   <defs>
     <linearGradient id="wordmark" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#38BDF8"/>
-      <stop offset="0.55" stop-color="#818CF8"/>
-      <stop offset="1" stop-color="#C4B5FD"/>
+      <stop offset="0" stop-color="#D9531E"/>
+      <stop offset="0.55" stop-color="#F18B4C"/>
+      <stop offset="1" stop-color="#F4C470"/>
     </linearGradient>
     <linearGradient id="needle" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#38BDF8"/>
-      <stop offset="1" stop-color="#A78BFA"/>
+      <stop offset="0" stop-color="#D9531E"/>
+      <stop offset="1" stop-color="#F4C470"/>
     </linearGradient>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#050B18"/>
       <stop offset="1" stop-color="#0A1426"/>
     </linearGradient>
     <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0" stop-color="#38BDF8" stop-opacity="0.28"/>
-      <stop offset="1" stop-color="#38BDF8" stop-opacity="0"/>
+      <stop offset="0" stop-color="#D9531E" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#D9531E" stop-opacity="0"/>
     </radialGradient>
   </defs>
 
@@ -37,31 +37,32 @@
       <path d="M64 18 L77 64 L64 110 L51 64 Z" fill="url(#needle)"/>
       <path d="M64 18 L64 110 L51 64 Z" fill="#0F172A" opacity="0.35"/>
     </g>
-    <circle cx="64" cy="64" r="6" fill="#050B18" stroke="#C4B5FD" stroke-width="3"/>
+    <circle cx="64" cy="64" r="6" fill="#050B18" stroke="#F4C470" stroke-width="3"/>
   </g>
 
   <!-- wordmark -->
+  <text x="241" y="66" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700" letter-spacing="3" fill="#D9531E">BY JESTATS · JESTATS.IO</text>
   <text x="238" y="142" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="66" font-weight="700" letter-spacing="-1.5" fill="url(#wordmark)">SkillRoute</text>
   <text x="241" y="188" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="23" fill="#8FA2B7">Local-first skill routing for agent builders.</text>
   <text x="241" y="222" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="23" fill="#8FA2B7">Index <tspan font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#BAE6FD">SKILL.md</tspan> bundles · rank with evidence · serve over MCP.</text>
 
   <!-- ranked route diagram -->
   <text x="902" y="60" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="600" letter-spacing="2.5" fill="#526274">RANKED ROUTE</text>
-  <g fill="none" stroke="#38BDF8" stroke-width="2">
+  <g fill="none" stroke="#D9531E" stroke-width="2">
     <path d="M918 150 C 972 150, 986 92, 1040 92" opacity="0.95"/>
     <path d="M918 150 C 972 150, 986 134, 1040 134" opacity="0.4"/>
     <path d="M918 150 C 972 150, 986 176, 1040 176" opacity="0.25"/>
     <path d="M918 150 C 972 150, 986 218, 1040 218" opacity="0.15"/>
   </g>
-  <circle cx="906" cy="150" r="13" fill="#050B18" stroke="#38BDF8" stroke-width="3"/>
+  <circle cx="906" cy="150" r="13" fill="#050B18" stroke="#D9531E" stroke-width="3"/>
   <g>
-    <circle cx="1046" cy="92" r="9" fill="#C4B5FD"/>
-    <rect x="1066" y="86" width="132" height="12" rx="6" fill="#C4B5FD"/>
-    <circle cx="1046" cy="134" r="8" fill="#38BDF8" opacity="0.75"/>
-    <rect x="1066" y="128" width="80" height="12" rx="6" fill="#38BDF8" opacity="0.55"/>
-    <circle cx="1046" cy="176" r="8" fill="#38BDF8" opacity="0.5"/>
-    <rect x="1066" y="170" width="52" height="12" rx="6" fill="#38BDF8" opacity="0.35"/>
-    <circle cx="1046" cy="218" r="8" fill="#38BDF8" opacity="0.32"/>
-    <rect x="1066" y="212" width="30" height="12" rx="6" fill="#38BDF8" opacity="0.22"/>
+    <circle cx="1046" cy="92" r="9" fill="#F4C470"/>
+    <rect x="1066" y="86" width="132" height="12" rx="6" fill="#F4C470"/>
+    <circle cx="1046" cy="134" r="8" fill="#D9531E" opacity="0.75"/>
+    <rect x="1066" y="128" width="80" height="12" rx="6" fill="#D9531E" opacity="0.55"/>
+    <circle cx="1046" cy="176" r="8" fill="#D9531E" opacity="0.5"/>
+    <rect x="1066" y="170" width="52" height="12" rx="6" fill="#D9531E" opacity="0.35"/>
+    <circle cx="1046" cy="218" r="8" fill="#D9531E" opacity="0.32"/>
+    <rect x="1066" y="212" width="30" height="12" rx="6" fill="#D9531E" opacity="0.22"/>
   </g>
 </svg>

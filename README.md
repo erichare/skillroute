@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="docs/assets/banner.svg" alt="SkillRoute — local-first skill routing for agent builders" width="100%">
+  <img src="docs/assets/banner.svg" alt="SkillRoute by JEStats — local-first skill routing for agent builders" width="100%">
 </p>
 
 <p align="center">
-  <a href="https://github.com/erichare/skillroute/actions/workflows/ci.yml"><img src="https://github.com/erichare/skillroute/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/jestatsio/skillroute/actions/workflows/ci.yml"><img src="https://github.com/jestatsio/skillroute/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="https://pypi.org/project/skillroute/"><img src="https://img.shields.io/pypi/v/skillroute?label=pypi&color=3776AB" alt="PyPI"></a>
   <a href="https://www.npmjs.com/package/@skillroute/mcp-server"><img src="https://img.shields.io/npm/v/@skillroute/mcp-server?label=npm&color=CB3837" alt="npm"></a>
   <a href="https://pypi.org/project/skillroute/"><img src="https://img.shields.io/pypi/pyversions/skillroute?color=306998" alt="Python 3.11+"></a>
@@ -28,6 +28,10 @@
 > indexes is checked against the [specification](https://agentskills.io/specification), and the
 > standalone validator doubles as a CI gate for skill authors.
 
+**SkillRoute is a free, open-source project by [JEStats](https://jestats.io).** The repository
+is now [`jestatsio/skillroute`](https://github.com/jestatsio/skillroute); the PyPI and npm package
+names stay the same, so existing install commands and catalogs keep working.
+
 Most agents choose a skill from a one-line description and hope for the best. SkillRoute treats your
 skill library like a real corpus: it parses complete `SKILL.md` bundles — headings, triggers,
 templates, relationships — ranks them with **confidence and source evidence**, returns a
@@ -44,7 +48,34 @@ any agent over MCP. One SQLite file, no services to run; add the Astra DB backen
 
 ## Install
 
-Three ways in — pick one.
+For Claude Code or Codex, install the plugin. For other agents, install the CLI and run the
+agent setup command. Node.js 20+ and [uv](https://docs.astral.sh/uv/getting-started/installation/)
+are required for the MCP server; an installed Python `skillroute` command can replace uv.
+
+### Claude Code plugin
+
+```bash
+claude plugin marketplace add jestatsio/skillroute
+claude plugin install skillroute@skillroute-marketplace
+```
+
+### Codex plugin
+
+```bash
+codex plugin marketplace add jestatsio/skillroute
+codex plugin add skillroute@skillroute-marketplace
+```
+
+Restart your agent after installing. Both plugins include the MCP server and the same routing
+skill. Then index your existing skills once:
+
+```bash
+uvx skillroute dogfood index
+```
+
+Or choose a directory with `uvx skillroute index --root ./skills`. Ask your agent:
+“Which of my skills should I use to add pytest coverage to this project?” These are JEStats
+community marketplace installs; inclusion in an official plugin directory is a separate step.
 
 <p align="center">
   <a href="#one-line-installer"><img src="docs/assets/install-quickstart.svg" alt="Quick start — one-line install" width="32%"></a>
@@ -55,7 +86,7 @@ Three ways in — pick one.
 ### One-line installer
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/erichare/skillroute/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/jestatsio/skillroute/main/scripts/install.sh | bash
 ```
 
 Confirms each step before it runs: clones or updates SkillRoute, installs dependencies, builds the
@@ -140,7 +171,8 @@ runs `uvx --from skillroute`); otherwise `pipx install skillroute` once. See
 | Component | What it does | Ships in |
 | --- | --- | --- |
 | **CLI** `skillroute` | Index, route, search, inspect, validate, traces, evals, harness setup | PyPI wheel |
-| **MCP server** | Three stdio tools: `route` · `search` · `inspect_skill` | npm `@skillroute/mcp-server`, bundled in the wheel |
+| **MCP server** | Three stdio tools: `route` · `search` · `inspect_skill` | npm `@skillroute/mcp-server` |
+| **Agent plugin** | MCP server plus a routing skill | Claude Code and Codex community marketplaces |
 | **Skill Atlas** | FastAPI + React Flow graph explorer, facet nebula and matrix views | wheel, `[ui]` extra |
 | **Harness packs** | 15 declarative manifests, 6 install modes (`mcp` · `acp` · `skills` · `hook` · `extension` · `router_skill`) | wheel |
 | **Retrieval backends** | local token · SQLite FTS5 (BM25) · Astra DB Data API · LangChain adapter | wheel |
@@ -279,5 +311,5 @@ process, and [SECURITY.md](SECURITY.md) for reporting vulnerabilities.
 ---
 
 <p align="center">
-  <sub>MIT © <a href="https://github.com/erichare">Eric Hare</a> — for people who take their skill libraries seriously.</sub>
+  <sub>Built by <a href="https://jestats.io">JEStats</a> · MIT © Eric Hare · for people who take their skill libraries seriously.</sub>
 </p>

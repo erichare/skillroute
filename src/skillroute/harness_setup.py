@@ -176,6 +176,8 @@ def apply_harness_setup(
     mode: str = "prompt",
     yes: bool = False,
     install_mode: str = "mcp",
+    server_source: str | None = None,
+    scope: str | None = None,
 ) -> SetupResult:
     if mode == "0":
         return SetupResult(detection.id, "skipped", "client setup disabled")
@@ -186,6 +188,8 @@ def apply_harness_setup(
         catalog=catalog,
         backend=backend,
         server_name=server_name,
+        server_source=server_source,
+        scope=scope,
     )
     if payload["setup_method"] == "print_only":
         return SetupResult(

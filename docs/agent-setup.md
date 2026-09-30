@@ -3,12 +3,46 @@
 SkillRoute exposes a local stdio MCP server, so agent clients can route skill
 requests without a hosted service.
 
-## One Command First
+## Install the Claude Code or Codex plugin
+
+With Node.js 20+ and uv installed:
+
+```bash
+# Claude Code
+claude plugin marketplace add jestatsio/skillroute
+claude plugin install skillroute@skillroute-marketplace
+
+# Codex
+codex plugin marketplace add jestatsio/skillroute
+codex plugin add skillroute@skillroute-marketplace
+
+# Index existing skill roots, then restart your agent
+uvx skillroute dogfood index
+```
+
+The plugins include a pinned MCP server and shared routing guidance. No source build or JEStats
+account is needed. See the [plugin README](../claude-plugin/README.md) for prerequisites and privacy.
+
+## Install from packages for any agent
+
+```bash
+uv tool install skillroute
+skillroute dogfood index
+skillroute harness install codex     # or claude-code, cursor, vscode, ...
+skillroute harness install codex --dry-run   # preview the configuration
+```
+
+Package installs automatically use `npx -y @skillroute/mcp-server`; source checkouts use their
+local build. Use `--server-source npx` or `--server-source local` to choose explicitly. JSON
+edits preserve existing servers and create a backup; TOML/YAML setups use the agent's CLI or
+print a snippet. `skillroute harness list` shows all 15 supported clients and their install modes.
+
+## Source installer
 
 For a fresh SkillRoute install:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/erichare/skillroute/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/jestatsio/skillroute/main/scripts/install.sh | bash
 ```
 
 The installer confirms each step, installs SkillRoute into
@@ -20,19 +54,19 @@ backups.
 For unattended use:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/erichare/skillroute/main/scripts/install.sh | bash -s -- --yes
+curl -fsSL https://raw.githubusercontent.com/jestatsio/skillroute/main/scripts/install.sh | bash -s -- --yes
 ```
 
 Useful installer options:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/erichare/skillroute/main/scripts/install.sh \
+curl -fsSL https://raw.githubusercontent.com/jestatsio/skillroute/main/scripts/install.sh \
   | SKILLROUTE_INSTALL_DIR=/opt/skillroute bash
 
-curl -fsSL https://raw.githubusercontent.com/erichare/skillroute/main/scripts/install.sh \
+curl -fsSL https://raw.githubusercontent.com/jestatsio/skillroute/main/scripts/install.sh \
   | bash -s -- --clients codex,claude-code,vscode --yes
 
-curl -fsSL https://raw.githubusercontent.com/erichare/skillroute/main/scripts/install.sh \
+curl -fsSL https://raw.githubusercontent.com/jestatsio/skillroute/main/scripts/install.sh \
   | SKILLROUTE_CLIENT_SETUP=0 bash
 ```
 

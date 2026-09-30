@@ -265,7 +265,8 @@ def test_splat_placeholder_cannot_be_used_inside_a_string() -> None:
 
 def setup(harness: str, mode: str = "mcp", **kwargs: object) -> dict:
     return build_harness_setup(
-        harness=harness, mode=mode, repo_root=REPO_ROOT, catalog=CATALOG, backend="local", **kwargs
+        harness=harness, mode=mode, repo_root=REPO_ROOT, catalog=CATALOG, backend="local",
+        server_source="local", **kwargs
     )
 
 
@@ -409,6 +410,27 @@ def test_cli_harness_install_dry_run_changes_nothing(tmp_path: Path, capsys) -> 
     assert not list(tmp_path.iterdir())
 
 
+def test_cli_install_applies_the_selected_source_and_scope(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    from skillroute import cli, harness_setup
+
+    (tmp_path / "src" / "skillroute").mkdir(parents=True)
+    env = HarnessEnvironment(
+        home=tmp_path, commands={"claude": "/bin/claude"}, existing_paths=set()
+    )
+    monkeypatch.setattr(cli, "detect_harnesses", lambda: harness_setup.detect_harnesses(env))
+    calls: list[list[str]] = []
+    monkeypatch.setattr(harness_setup.subprocess, "run", lambda argv, **kwargs: calls.append(argv))
+    cli.main([
+        "harness", "install", "claude-code", "--repo-root", str(tmp_path),
+        "--server-source", "npx", "--scope", "project", "--yes",
+    ])
+    assert len(calls) == 1
+    assert calls[0][-3:] == ["npx", "-y", "@skillroute/mcp-server"]
+    assert calls[0][calls[0].index("--scope") + 1] == "project"
+
+
 def test_cli_mcp_config_deprecation_goes_to_stderr_only(capsys) -> None:
     """`--json` stdout must stay machine-parseable."""
     from skillroute.cli import main
@@ -444,11 +466,19 @@ def test_server_argv_rejects_an_unknown_source(tmp_path: Path) -> None:
         server_argv_for("carrier-pigeon", repo_root=tmp_path)
 
 
-def test_default_server_source_stays_local_until_the_package_ships() -> None:
-    """Guards the S2 switch: flipping it must be deliberate, not incidental."""
-    from skillroute.harness_render import DEFAULT_SERVER_SOURCE
+def test_default_setup_works_without_a_checkout(tmp_path: Path) -> None:
+    payload = build_harness_setup(harness="codex", repo_root=tmp_path)
+    assert payload["server_config"]["command"] == "npx"
+    assert payload["server_config"]["args"] == ["-y", "@skillroute/mcp-server"]
+    assert "cwd" not in payload["server_config"]
+    assert "MCP entrypoint not found" not in " ".join(payload["notes"])
 
-    assert DEFAULT_SERVER_SOURCE == "local"
+
+def test_default_setup_preserves_source_checkout_workflow(tmp_path: Path) -> None:
+    (tmp_path / "src" / "skillroute").mkdir(parents=True)
+    payload = build_harness_setup(harness="codex", repo_root=tmp_path)
+    assert payload["server_source"] == "local"
+    assert payload["server_config"]["command"] == "node"
 
 
 @pytest.mark.parametrize("harness", sorted(load_manifests()))
@@ -465,7 +495,7 @@ def test_every_harness_renders_against_both_server_sources(
             catalog=tmp_path / "c.db",
             server_source=source,
         )
-        assert payload["server_source"] == source
+        assert payload["server_source"] == ("npx" if source == "auto" else source)
 
 
 def test_npx_source_drops_the_local_checkout_notes(tmp_path: Path) -> None:
@@ -508,7 +538,8 @@ def test_working_directory_is_dropped_for_a_published_server(
     from skillroute.harness_render import build_harness_setup
 
     local = build_harness_setup(
-        harness=harness, mode="mcp", repo_root=tmp_path, catalog=tmp_path / "c.db"
+        harness=harness, mode="mcp", repo_root=tmp_path, catalog=tmp_path / "c.db",
+        server_source="local",
     )
     npx = build_harness_setup(
         harness=harness,

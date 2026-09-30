@@ -1,7 +1,5 @@
 {
-  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "skillroute",
-  "displayName": "SkillRoute by JEStats",
   "version": "0.6.0",
   "description": "SkillRoute by JEStats: rank your local SKILL.md bundles with confidence and evidence, search your library, and inspect matching skills with your coding agent.",
   "author": {
@@ -10,9 +8,6 @@
   },
   "homepage": "https://github.com/jestatsio/skillroute",
   "repository": "https://github.com/jestatsio/skillroute",
-  "documentationUrl": "https://github.com/jestatsio/skillroute/tree/main/claude-plugin#readme",
-  "supportUrl": "https://github.com/jestatsio/skillroute/issues",
-  "privacyPolicyUrl": "https://github.com/jestatsio/skillroute/tree/main/claude-plugin#privacy",
   "license": "MIT",
   "keywords": [
     "skills",
@@ -30,5 +25,20 @@
         "@skillroute/mcp-server@0.6.0"
       ]
     }
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "SkillRoute by JEStats",
+    "shortDescription": "Find the right skills for your task with local routing, confidence, and evidence.",
+    "developerName": "JEStats",
+    "category": "Developer Tools",
+    "websiteURL": "https://jestats.io",
+    "supportURL": "https://github.com/jestatsio/skillroute/issues",
+    "brandColor": "#D9531E",
+    "logo": "./.claude-plugin/icon.svg",
+    "defaultPrompt": [
+      "Index my installed skills and find the best ones for this task",
+      "Show me which skills match this project"
+    ]
   }
 }

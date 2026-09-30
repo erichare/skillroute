@@ -269,7 +269,7 @@ def test_cli_mcp_config_codex_outputs_install_command_and_toml(
     capsys,
 ) -> None:
     repo_root = tmp_path / "repo"
-    repo_root.mkdir()
+    (repo_root / "src" / "skillroute").mkdir(parents=True)
     catalog_path = tmp_path / "catalog.db"
 
     main(
@@ -304,7 +304,7 @@ def test_cli_mcp_config_ibm_bob_outputs_bob_json(
     capsys,
 ) -> None:
     repo_root = tmp_path / "repo"
-    repo_root.mkdir()
+    (repo_root / "src" / "skillroute").mkdir(parents=True)
     catalog_path = tmp_path / "catalog.db"
 
     main(
@@ -339,7 +339,7 @@ def test_cli_mcp_config_claude_code_outputs_scoped_command_and_json(
     capsys,
 ) -> None:
     repo_root = tmp_path / "repo"
-    repo_root.mkdir()
+    (repo_root / "src" / "skillroute").mkdir(parents=True)
 
     main(
         [
@@ -370,7 +370,7 @@ def test_cli_mcp_config_claude_desktop_prints_config_snippet(
     capsys,
 ) -> None:
     repo_root = tmp_path / "repo"
-    repo_root.mkdir()
+    (repo_root / "src" / "skillroute").mkdir(parents=True)
     catalog_path = tmp_path / "catalog.db"
 
     main(
@@ -400,7 +400,7 @@ def test_cli_mcp_config_vscode_outputs_add_mcp_command(
     capsys,
 ) -> None:
     repo_root = tmp_path / "repo"
-    repo_root.mkdir()
+    (repo_root / "src" / "skillroute").mkdir(parents=True)
     catalog_path = tmp_path / "catalog.db"
 
     main(
@@ -434,7 +434,7 @@ def test_cli_mcp_config_windsurf_outputs_config_path(
     capsys,
 ) -> None:
     repo_root = tmp_path / "repo"
-    repo_root.mkdir()
+    (repo_root / "src" / "skillroute").mkdir(parents=True)
 
     main(
         [
@@ -462,7 +462,7 @@ def test_cli_mcp_config_cursor_is_print_only(
     capsys,
 ) -> None:
     repo_root = tmp_path / "repo"
-    repo_root.mkdir()
+    (repo_root / "src" / "skillroute").mkdir(parents=True)
 
     main(
         [
