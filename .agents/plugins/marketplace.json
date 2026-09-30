@@ -1,0 +1,20 @@
+{
+  "name": "skillroute-marketplace",
+  "interface": {
+    "displayName": "SkillRoute by JEStats"
+  },
+  "plugins": [
+    {
+      "name": "skillroute",
+      "source": {
+        "source": "local",
+        "path": "./claude-plugin"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}

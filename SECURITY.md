@@ -7,7 +7,7 @@ Only the latest release receives security fixes.
 ## Reporting a Vulnerability
 
 Please report vulnerabilities privately via
-[GitHub security advisories](https://github.com/erichare/skillroute/security/advisories/new)
+[GitHub security advisories](https://github.com/jestatsio/skillroute/security/advisories/new)
 rather than opening a public issue. You should receive a response within a week.
 
 ## Scope notes

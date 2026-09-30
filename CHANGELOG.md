@@ -7,7 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-09-29
+
+### Changed
+
+- SkillRoute is now a JEStats project at `jestatsio/skillroute`, with jestats.io branding in
+  the README, Skill Atlas, plugin listings, and package metadata. Existing package names stay
+  unchanged.
+- Agent setup detects source checkouts and uses the published npm MCP server for wheel installs.
+
+### Fixed
+
+- Actual agent installation now honors the selected `--server-source` and `--scope`, matching
+  its configuration preview.
+
 ### Added
+
+- Claude Code and Codex community marketplaces with shared routing guidance and a pinned MCP
+  server. Install from `jestatsio/skillroute` without building a source checkout.
+- A shared agent plugin ZIP attached to each GitHub release.
+
 
 - **Claude Code plugin** in [`claude-plugin/`](claude-plugin/): the MCP server,
   pinned to the release it ships with, and a `skillroute` skill that tells
@@ -132,10 +151,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `skillroute stats` on a catalog that was never indexed reports zero routes
   instead of failing with a missing-table SQL error.
 
-[Unreleased]: https://github.com/erichare/skillroute/compare/v0.5.0...HEAD
-[0.5.0]: https://github.com/erichare/skillroute/compare/v0.4.0...v0.5.0
-[0.4.0]: https://github.com/erichare/skillroute/compare/v0.3.0...v0.4.0
-[0.3.0]: https://github.com/erichare/skillroute/compare/v0.2.0...v0.3.0
+[Unreleased]: https://github.com/jestatsio/skillroute/compare/v0.6.0...HEAD
+[0.6.0]: https://github.com/jestatsio/skillroute/compare/v0.5.0...v0.6.0
+[0.5.0]: https://github.com/jestatsio/skillroute/compare/v0.4.0...v0.5.0
+[0.4.0]: https://github.com/jestatsio/skillroute/compare/v0.3.0...v0.4.0
+[0.3.0]: https://github.com/jestatsio/skillroute/compare/v0.2.0...v0.3.0
 
 ## [0.2.0] - 2026-08-13
 
@@ -249,7 +269,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   resolve inside it (CodeQL `py/path-injection`). The bundled UI never sent
   `repo`, and the CLI's `--repo` is unaffected.
 
-[0.2.0]: https://github.com/erichare/skillroute/compare/v0.1.0...v0.2.0
+[0.2.0]: https://github.com/jestatsio/skillroute/compare/v0.1.0...v0.2.0
 
 ## [0.1.0] - 2026-08-10
 
@@ -273,4 +293,4 @@ First release.
   `skillroute.search`, and `skillroute.inspect_skill`, with client setup via
   `skillroute mcp config --client <client>`
 
-[0.1.0]: https://github.com/erichare/skillroute/releases/tag/v0.1.0
+[0.1.0]: https://github.com/jestatsio/skillroute/releases/tag/v0.1.0

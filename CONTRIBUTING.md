@@ -39,7 +39,9 @@ CI mirrors these commands plus dependency audits and a packaging check; see
    their versions from package metadata — do not hardcode versions elsewhere.
    Also bump `dsh-plugin/package.json`, and in
    `claude-plugin/.claude-plugin/plugin.json` both `version` and the
-   `@skillroute/mcp-server@X.Y.Z` pin. The release workflow and
+   `@skillroute/mcp-server@X.Y.Z` pin. Update the matching Codex manifest in
+   `claude-plugin/.codex-plugin/plugin.json` and the Claude marketplace version in
+   `.claude-plugin/marketplace.json`. The release workflow and
    `tests/test_claude_plugin.py` fail if any of them disagree.
 2. Add a section to `CHANGELOG.md` and update its compare/tag links.
 3. Land those changes on `main`, then tag and push:
@@ -49,11 +51,14 @@ CI mirrors these commands plus dependency audits and a packaging check; see
    ```
 
 4. The [release workflow](.github/workflows/release.yml) builds the sdist,
-   wheel, and npm tarball, then creates a GitHub release with the artifacts
+   wheel, npm tarballs, and shared agent plugin ZIP, then creates a GitHub release with the artifacts
    attached.
    - PyPI publishing runs only when the `PYPI_PUBLISH` repository variable is
      `true` and a [PyPI trusted publisher](https://docs.pypi.org/trusted-publishers/)
      is configured for this repository.
    - npm publishing runs only when the `NPM_PUBLISH` repository variable is
-     `true` and an `NPM_TOKEN` secret with publish rights to the
-     `@skillroute` scope is configured.
+     `true` and npm trusted publishers are configured for both packages.
+
+Trusted publishers must name `jestatsio/skillroute`, workflow `release.yml`. The PyPI
+publisher also uses the `pypi` GitHub environment; npm has no environment configured.
+After a repository transfer, update the owner in each registry before tagging a release.

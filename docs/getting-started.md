@@ -8,7 +8,7 @@ skills.
 One-line SkillRoute installer:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/erichare/skillroute/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/jestatsio/skillroute/main/scripts/install.sh | bash
 ```
 
 The installer confirms each step before it clones or updates SkillRoute,
@@ -19,7 +19,7 @@ detected client. It installs to `~/.skillroute/skillroute` by default, reusing a
 For unattended local/dev use:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/erichare/skillroute/main/scripts/install.sh | bash -s -- --yes
+curl -fsSL https://raw.githubusercontent.com/jestatsio/skillroute/main/scripts/install.sh | bash -s -- --yes
 ```
 
 Already in a checkout:

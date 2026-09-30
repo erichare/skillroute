@@ -346,7 +346,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--server-source",
         choices=SERVER_SOURCES,
         default=DEFAULT_SERVER_SOURCE,
-        help="Point the config at a built checkout (local) or the published package (npx)",
+        help="Auto-detect a checkout, or select local / the published npm package (npx)",
     )
     harness_show_parser.set_defaults(func=cmd_harness_show)
 
@@ -367,7 +367,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--server-source",
         choices=SERVER_SOURCES,
         default=DEFAULT_SERVER_SOURCE,
-        help="Point the config at a built checkout (local) or the published package (npx)",
+        help="Auto-detect a checkout, or select local / the published npm package (npx)",
     )
     harness_install_parser.set_defaults(func=cmd_harness_install)
 
@@ -901,6 +901,8 @@ def cmd_harness_install(args: argparse.Namespace) -> None:
         mode="1" if args.yes else "prompt",
         yes=args.yes,
         install_mode=args.mode,
+        server_source=payload["server_source"],
+        scope=payload.get("scope"),
     )
     print(f"{detection.name}: {result.status} - {result.message}")
     if result.backup_path:

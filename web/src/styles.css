@@ -1184,3 +1184,9 @@ button {
     grid-template-columns: 1fr;
   }
 }
+.brand-credit {
+  color: #d9531e;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}

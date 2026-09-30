@@ -41,12 +41,11 @@ NPM_PACKAGE = "@skillroute/mcp-server"
 # checkout, which is the only thing that works before the package is published;
 # `npx` points at the published package, which is the only thing that works for
 # anyone who did not clone the repo.
-SERVER_SOURCES = ("local", "npx")
+SERVER_SOURCES = ("auto", "local", "npx")
 
-# The S2 switch. Flipping this to "npx" changes what every generated config
-# points at, so it stays "local" until @skillroute/mcp-server is actually on
-# npm -- otherwise `harness install` would emit configs that resolve to nothing.
-DEFAULT_SERVER_SOURCE = "local"
+# A source checkout can run its local server; a wheel has no mcp/build tree.
+# Resolve this at setup time so package installs work without cloning the repo.
+DEFAULT_SERVER_SOURCE = "auto"
 
 
 class RenderError(ValueError):
@@ -65,6 +64,8 @@ def server_argv_for(
     source: str, *, repo_root: Path, package: str = NPM_PACKAGE
 ) -> list[str]:
     """The argv a generated config should use to start the MCP server."""
+    if source == "auto":
+        source = resolve_server_source(source, repo_root)
     if source == "npx":
         # `-y` so a first run does not stop at an install prompt inside a
         # harness that gives the server no terminal.
@@ -74,6 +75,12 @@ def server_argv_for(
     raise RenderError(
         f"Unknown server source {source!r}; expected one of: {', '.join(SERVER_SOURCES)}"
     )
+
+
+def resolve_server_source(source: str, repo_root: Path) -> str:
+    if source == "auto":
+        return "local" if (repo_root / "src" / "skillroute").is_dir() else "npx"
+    return source
 
 
 def shell_command(parts: list[str]) -> str:
@@ -105,7 +112,9 @@ def build_harness_setup(
     resolved_scope = _resolve_scope(install, scope, harness=harness)
     resolved_platform = platform or current_platform()
     resolved_repo_root = (repo_root or default_repo_root()).expanduser().resolve()
-    resolved_source = server_source or DEFAULT_SERVER_SOURCE
+    resolved_source = resolve_server_source(
+        server_source or DEFAULT_SERVER_SOURCE, resolved_repo_root
+    )
     # A published server has no checkout, so resolving its catalog against one
     # would bake in a path that does not exist on the machine running the
     # config. Only a `local` config may name the checkout's catalog.

@@ -1,0 +1,20 @@
+{
+  "name": "skillroute-marketplace",
+  "owner": {
+    "name": "JEStats",
+    "url": "https://jestats.io"
+  },
+  "metadata": {
+    "description": "SkillRoute by JEStats: local skill routing for coding agents.",
+    "version": "0.6.0"
+  },
+  "plugins": [
+    {
+      "name": "skillroute",
+      "source": "./claude-plugin",
+      "description": "SkillRoute by JEStats: rank your local SKILL.md bundles with confidence and evidence, search your library, and inspect matching skills with your coding agent.",
+      "version": "0.6.0",
+      "category": "development"
+    }
+  ]
+}

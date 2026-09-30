@@ -1,17 +1,17 @@
 {
   "name": "@skillroute/mcp-server",
-  "version": "0.5.0",
-  "description": "SkillRoute MCP stdio server",
+  "version": "0.6.0",
+  "description": "SkillRoute by JEStats: local skill routing over MCP for coding agents.",
   "license": "MIT",
-  "author": "Eric Hare",
-  "homepage": "https://github.com/erichare/skillroute#readme",
+  "author": "JEStats (https://jestats.io)",
+  "homepage": "https://jestats.io",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/erichare/skillroute.git",
+    "url": "git+https://github.com/jestatsio/skillroute.git",
     "directory": "mcp"
   },
   "bugs": {
-    "url": "https://github.com/erichare/skillroute/issues"
+    "url": "https://github.com/jestatsio/skillroute/issues"
   },
   "keywords": [
     "mcp",

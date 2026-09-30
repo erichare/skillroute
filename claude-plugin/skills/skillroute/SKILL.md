@@ -5,7 +5,7 @@ description: Pick the right skills for a task from a large local skill library w
 
 # SkillRoute
 
-SkillRoute keeps a local catalog of SKILL.md bundles and ranks them against a request. It offers three MCP tools:
+SkillRoute by [JEStats](https://jestats.io) keeps a local catalog of SKILL.md bundles and ranks them against a request. It offers three MCP tools:
 
 - `skillroute.route`: pass the user's `request` (and the working directory as `repo`, when relevant). It returns ranked skills with a confidence score, the reasons for each match, evidence snippets, and a suggested order. When `clarification_needed` is true, ask the user the returned `clarification_questions` before you commit to a skill.
 - `skillroute.search`: a keyword-style lookup (`query`) when the user wants to browse rather than route one task.

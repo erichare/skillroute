@@ -1,11 +1,11 @@
 [project]
 name = "skillroute"
-version = "0.5.0"
-description = "Local-first skill catalog and router for agent builders"
+version = "0.6.0"
+description = "SkillRoute by JEStats: local-first skill catalog and router for coding agents"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
-authors = [{ name = "Eric Hare" }]
+authors = [{ name = "JEStats" }, { name = "Eric Hare" }]
 keywords = ["agents", "skills", "routing", "mcp", "catalog"]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -38,10 +38,10 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/erichare/skillroute"
-Repository = "https://github.com/erichare/skillroute"
-Issues = "https://github.com/erichare/skillroute/issues"
-Changelog = "https://github.com/erichare/skillroute/blob/main/CHANGELOG.md"
+Homepage = "https://jestats.io"
+Repository = "https://github.com/jestatsio/skillroute"
+Issues = "https://github.com/jestatsio/skillroute/issues"
+Changelog = "https://github.com/jestatsio/skillroute/blob/main/CHANGELOG.md"
 
 [project.scripts]
 skillroute = "skillroute.cli:main"
