@@ -21,7 +21,7 @@
     "@types/react": "^19.2.8",
     "@types/react-dom": "^19.2.5",
     "@vitejs/plugin-react": "^6.1.1",
-    "eslint": "^10.9.0",
+    "eslint": "^10.11.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "globals": "^17.9.0",
     "typescript": "^6.0.3",
